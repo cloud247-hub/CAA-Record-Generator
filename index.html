@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Object ID ↔ SID Converter | Cloud247</title>
+  <meta name="description" content="Konverter mellom Microsoft Entra Object ID og Windows SID-formatet S-1-12-1. Alt behandles lokalt i nettleseren.">
+  <meta name="theme-color" content="#061A2F">
+  <meta property="og:title" content="Object ID ↔ SID Converter | Cloud247">
+  <meta property="og:description" content="Konverter raskt mellom Microsoft Entra Object ID og Windows SID-formatet S-1-12-1.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="converter-core.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#converter">Gå til konvertereren</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="cloud-brand" href="https://cloud247.no/" aria-label="Cloud247 forside">
+        <img src="assets/cloud247-logo.svg" alt="Cloud247 Technology">
+      </a>
+      <span class="header-label">Object ID ↔ SID Converter</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="cloud-hero" id="converter">
+      <div class="shell cloud-hero-inner">
+        <div class="cloud-hero-copy">
+          <p class="cloud-eyebrow">CLOUD TOOLBOX</p>
+          <h1>Object ID ↔ SID Converter</h1>
+          <p>Konverter mellom Microsoft Entra Object ID og Windows SID-formatet <code>S-1-12-1</code> – raskt og lokalt i nettleseren.</p>
+        </div>
+
+        <div class="converter-card hero-action-card cloud-panel">
+          <div class="hero-card-heading">
+            <div>
+              <p class="hero-card-kicker">KONVERTER</p>
+              <h2>Object ID og SID</h2>
+              <p>Velg retning, lim inn verdien og kopier resultatet.</p>
+            </div>
+            <span class="local-badge">Behandles lokalt</span>
+          </div>
+
+          <div class="direction-switch" role="group" aria-label="Velg konverteringsretning">
+            <button class="direction-button is-active" type="button" data-mode="object-to-sid" aria-pressed="true">
+              Object ID <span aria-hidden="true">→</span> SID
+            </button>
+            <button class="direction-button" type="button" data-mode="sid-to-object" aria-pressed="false">
+              SID <span aria-hidden="true">→</span> Object ID
+            </button>
+          </div>
+
+          <form id="converter-form" novalidate>
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="source-input" id="source-label">Microsoft Entra Object ID</label>
+                <button class="text-button" id="example-button" type="button">Bruk eksempel</button>
+              </div>
+              <input
+                id="source-input"
+                class="value-input"
+                type="text"
+                inputmode="text"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder="73d664e4-0886-4a73-9731-8146e010541d"
+                aria-describedby="source-help source-error">
+              <div class="field-meta">
+                <p id="source-help">Et GUID med 32 heksadesimale tegn. Bindestreker og klammeparenteser er valgfrie.</p>
+                <p class="field-error" id="source-error" role="alert" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="primary-button" type="submit">Konverter <span aria-hidden="true">→</span></button>
+              <button class="secondary-button" id="swap-button" type="button" title="Bytt retning"><span aria-hidden="true">⇄</span> Bytt retning</button>
+              <button class="secondary-button" id="clear-button" type="button">Tøm</button>
+            </div>
+          </form>
+
+          <div class="result-panel" id="result-panel" data-state="empty">
+            <div class="result-heading">
+              <div>
+                <span class="result-kicker">RESULTAT</span>
+                <h3 id="result-label">Windows SID</h3>
+              </div>
+              <span class="result-status" id="result-status">Venter på verdi</span>
+            </div>
+            <div class="result-value-row">
+              <output id="result-output" class="result-output" for="source-input">Resultatet vises her</output>
+              <button class="copy-button" id="copy-result-button" type="button" disabled>Kopier</button>
+            </div>
+            <p class="result-note" id="result-note">Resultatet bruker Windows-formatet <code>S-1-12-1</code>. Konverteringen validerer ikke objektet mot Microsoft Entra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="batch-section">
+      <div class="shell">
+        <details class="batch-card cloud-panel">
+          <summary>
+            <span>
+              <strong>Massekonvertering</strong>
+              <small>Én verdi per linje, opptil 250 verdier</small>
+            </span>
+            <span class="summary-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="batch-body">
+            <label for="batch-input">Verdier</label>
+            <textarea id="batch-input" rows="7" spellcheck="false" placeholder="Lim inn én verdi per linje"></textarea>
+            <div class="action-row compact">
+              <button class="primary-button" id="batch-convert-button" type="button">Konverter alle</button>
+              <button class="secondary-button" id="batch-copy-button" type="button" disabled>Kopier resultater</button>
+              <button class="secondary-button" id="batch-download-button" type="button" disabled>Last ned CSV</button>
+            </div>
+            <p class="batch-message" id="batch-message" aria-live="polite"></p>
+            <div class="table-wrap" id="batch-table-wrap" hidden>
+              <table>
+                <thead>
+                  <tr><th>Nr.</th><th>Input</th><th>Resultat</th><th>Status</th></tr>
+                </thead>
+                <tbody id="batch-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="feature-section">
+      <div class="shell">
+        <div class="features-title">
+          <p class="section-eyebrow">MICROSOFT ENTRA</p>
+          <h2>Enkel konvertering begge veier</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span>01</span>
+            <h3>Object ID → SID</h3>
+            <p>Konverter et Microsoft Entra Object ID til Windows-formatet <code>S-1-12-1-x-x-x-x</code>.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>SID → Object ID</h3>
+            <p>Konverter en kompatibel <code>S-1-12-1</code>-SID tilbake til det opprinnelige Object ID-et.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lokalt i nettleseren</h3>
+            <p>Verdiene sendes ikke til en backend. Konverteringen skjer direkte i nettleseren din.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="more-tools-section">
+      <div class="shell">
+        <div class="more-tools-card">
+          <div>
+            <p class="cloud-eyebrow">CLOUD TOOLBOX</p>
+            <h2>Se mine andre verktøy</h2>
+            <p>Flere enkle verktøy for Microsoft 365, Intune, e-post og domenesikkerhet.</p>
+          </div>
+          <a class="tools-button" href="https://cloud247.no/">Gå til Cloud247 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cloud-footer">
+    <div class="shell footer-inner">
+      <span>© <span id="year"></span> Cloud247</span>
+      <a href="https://cloud247.no/">cloud247.no</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
