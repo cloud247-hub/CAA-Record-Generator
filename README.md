@@ -1,7 +1,3 @@
-# Cloud247 CAA Record Generator – Auto Analysis
-
-Statisk GitHub Pages-app i Cloud247-design for å analysere og generere CAA-poster.
-
 ## Funksjoner
 
 - Auto-analyse av domene
@@ -21,9 +17,3 @@ Statisk GitHub Pages-app i Cloud247-design for å analysere og generere CAA-post
 Certificate Transparency viser sertifikater som er utstedt og ikke utløpt. Det er ikke det samme som å bekrefte hvilket sertifikat en webserver serverer akkurat nå. Bruk auto-forslaget som et utgangspunkt og kontroller kritiske tjenester før CAA strammes inn.
 
 Cert Spotter kan begrense anonyme API-kall. Appen har derfor en reserveforespørsel mot crt.sh. For høy trafikk eller kommersiell produksjonsbruk bør du vurdere en egen backend eller en autentisert sertifikatdatakilde.
-
-## GitHub Pages
-
-Last opp filene til repository-roten og publiser fra `main` / `root`.
-
-Hvis appen skal bruke et eget subdomene, legg til en `CNAME`-fil med ønsket vertsnavn.
