@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 1024 1024"
+   role="img"
+   aria-labelledby="title desc"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs5" />
+  <title
+     id="title">Cloud 247 symbol</title>
+  <desc
+     id="desc">Yellow fast cloud symbol on a dark navy background.</desc>
+  <rect
+     width="1024"
+     height="1024"
+     rx="180"
+     fill="#061A2F"
+     id="rect1" />
+  <g
+     transform="translate(0 95)"
+     fill="none"
+     stroke="#FAD63A"
+     stroke-width="34"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="g5">
+    <path
+       d="M394 378              C410 367 428 360 447 358              C459 299 511 255 573 255              C632 255 681 295 691 349              C732 361 760 398 760 443              C760 497 717 540 663 540              H326"
+       id="path1" />
+    <path
+       d="M310 404 H425"
+       id="path2" />
+    <path
+       d="M287 452 H421"
+       id="path3" />
+    <path
+       d="M260 500 H371"
+       id="path4" />
+    <path
+       d="M410 500 H454"
+       id="path5" />
+  </g>
+  <circle
+     cx="275"
+     cy="499"
+     r="17"
+     fill="#FAD63A"
+     id="circle5" />
+</svg>
